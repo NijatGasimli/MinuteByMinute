@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <section id="Topbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="TopbarList">
+                            <ul class="d-flex justify-content-evenly mt-2">
+                                <a href="#">
+                                <li class="text-muted">Haqqımızda</li></a>
+                                <a href="#">
+                                <li class="text-muted">Suallar</li></a>
+                                <a href="#">
+                                <li class="text-muted">Daşınma Şərtləri</li></a>
+                                <a href="#">
+                                <li class="text-muted text-center">Şəxsi Məlumatların Qorunması</li></a>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 Auth">
+                        <div class="d-flex mt-2 All justify-content-center  ">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                               @User.Identity.Name
+                                <a asp-controller="Account" asp-action="Logout">Logout</a>
+                                            }
+                            else
+                            {
+                                <div class="Login d-flex">
+                                    <i class="fas fa-user-alt mt-1"></i>
+                                    <a asp-controller="Account" asp-action="Login">Daxil ol</a>
+                                </div>
+                                <div class="Register">
+                                    <i class="fas fa-user-alt mt-1"></i>
+                                    <a asp-controller="Account" asp-action="Register"> Qeydiyyat</a>
+                                </div>
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="Navbar">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <a class="navbar-brand" href="#"><h1 class="text-uppercase mt-2">Run<span style="color: #FEC65A;">ex</span></h1></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-around " id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">Ana səhifə </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Tariflər</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">  Mağazalar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">  Əlaqə</a>
+                        </li>
+                    </ul>
+                    <div class="mt-3 d-flex  order ">
+                        <div class="mr-3 mt-2 d-flex">
+                            <i class="fa-solid fa-phone-flip"></i>
+                            <p>012 525 38 83</p>
+                        </div>
+                        <div>
+                            <form asp-controller="User" asp-action="CreateCargo">
+                                <button class="mybutton" type="submit" >
+                                    Sifaris Et
+                                </button>
+                            </form>
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
+        </section>
+
+
+        <div class="w-100">
+            <div class="line">
+
+            </div>
+
+
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        <section id="Footer">
+            <div class="container-fluid mt-5">
+                <div class="row mt-5">
+                    <div class="col-md-3 mt-5">
+                        <div>
+                            <div class="d-flex justify-content-center  logo">
+                                <a href="#" class="text-uppercase">Run<span style="color:#FEC65A ;">ex</span></a>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-5">
+
+                    </div>
+                    <div class="col-md-3 mt-5">
+
+                    </div>
+                    <div class="col-md-3 mt-5">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+
+    <script src="https://kit.fontawesome.com/d9fd6f15f2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="~/assets/js/script.js"></script>
+</body>
+</html>
