@@ -494,4 +494,50 @@ font-weight: bold;
 #Footer {
     background-color: #272525;
 }
+#User .about {
+    background: linear-gradient(180deg, #86589C 0%, #9E70B4 100%);
+    height: 127px;
+}
+
+    #User .about h1 {
+        color: white;
+        font-weight: 700;
+        font-size: 31px;
+        margin-top: 38px;
+        margin-left: 20px;
+    }
+
+    #User .about p {
+        color: #ffffff7d;
+        font-size: 18px;
+        margin-right: 20px;
+    }
+
+        #User .about p a {
+            text-decoration: none;
+            color: #ffffff7d;
+        }
+.balance {
+    margin-left: 5%;
+}
+
+.btn-primary {
+    height: 30px;
+}
+
+.mybutton {
+    width: 140px;
+    height: 45px;
+    background-color: #FEC65A;
+    border-radius: 8px;
+    border: solid 1px #FEC65A;
+    margin-left: 5%;
+}
+
+.BalanceAbout {
+    box-shadow: 0px 0px 6px rgb(224, 211, 211);
+    
+    height: 150px;
+}
+  
   
