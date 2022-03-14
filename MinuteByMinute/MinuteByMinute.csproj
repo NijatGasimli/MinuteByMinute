@@ -17,7 +17,6 @@
   <ItemGroup>
     <Folder Include="Areas\MinuteAdminPanelArea\Data\" />
     <Folder Include="Areas\MinuteAdminPanelArea\Models\" />
-    <Folder Include="Areas\MinuteAdminPanelArea\Views\" />
   </ItemGroup>
 
   <ItemGroup>

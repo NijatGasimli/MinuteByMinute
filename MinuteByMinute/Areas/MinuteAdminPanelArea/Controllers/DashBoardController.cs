@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
+    [Area("MinuteAdminPanelArea")]
     public class DashBoardController : Controller
     {
         public IActionResult Index()

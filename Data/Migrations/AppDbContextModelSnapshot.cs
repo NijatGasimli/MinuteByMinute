@@ -19,6 +19,88 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Core.Entity.AdminPanelEntityes.DeclaredCargos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CargosId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Count")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CargosId")
+                        .IsUnique()
+                        .HasFilter("[CargosId] IS NOT NULL");
+
+                    b.ToTable("DeclaredCargos");
+                });
+
+            modelBuilder.Entity("Core.Entity.AdminPanelEntityes.Flights", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CargosID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Flights");
+                });
+
+            modelBuilder.Entity("Core.Entity.AdminPanelEntityes.TurkishStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ComingTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TurkishStorages");
+                });
+
             modelBuilder.Entity("Core.Entity.Entities.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -121,6 +203,9 @@ namespace Data.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsInvoice")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("Isdeleted")
                         .HasColumnType("bit");
 
@@ -133,6 +218,9 @@ namespace Data.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
@@ -141,6 +229,41 @@ namespace Data.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Cargos");
+                });
+
+            modelBuilder.Entity("Core.Entity.Entities.Categories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Core.Entity.Entities.Shops", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -274,11 +397,27 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Core.Entity.AdminPanelEntityes.DeclaredCargos", b =>
+                {
+                    b.HasOne("Core.Entity.Entities.Cargos", "Cargos")
+                        .WithOne("Declared")
+                        .HasForeignKey("Core.Entity.AdminPanelEntityes.DeclaredCargos", "CargosId");
+                });
+
             modelBuilder.Entity("Core.Entity.Entities.Cargos", b =>
                 {
                     b.HasOne("Core.Entity.Entities.AppUser", "AppUser")
                         .WithMany("Cargos")
                         .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("Core.Entity.Entities.Shops", b =>
+                {
+                    b.HasOne("Core.Entity.Entities.Categories", "Categories")
+                        .WithMany("Shops")
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

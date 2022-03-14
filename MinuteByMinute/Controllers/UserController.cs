@@ -1,12 +1,17 @@
-﻿using Core.Entity.Entities;
+﻿using Core.Entity.AdminPanelEntityes;
+using Core.Entity.Entities;
+using Core.Entity.ViewModel;
 using Core.Entity.ViewModel.AccountVM;
 using Data.DAL;
+using Data.Utilities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,12 +20,14 @@ namespace MinuteByMinute.Controllers
     [Authorize]
     public class UserController : Controller
     {
+        private readonly IWebHostEnvironment _env;
         private readonly AppDbContext _context;
-
+        public int OrderID { get; set; }
         public UserManager<AppUser> _userManager { get; }
 
-        public UserController(AppDbContext Context,UserManager<AppUser> UserManager)
+        public UserController(AppDbContext Context,UserManager<AppUser> UserManager, IWebHostEnvironment env)
         {
+            _env = env;
             _context = Context;
             _userManager = UserManager;
 
@@ -62,11 +69,15 @@ namespace MinuteByMinute.Controllers
                 Link=cargo.Link,
                 Price=cargo.Price,
                 Size=cargo.Size,
-                AppUserId=user.Id
+                AppUserId=user.Id,
+                Status="Wait",
+                IsInvoice=false
+                
             };
 
             await _context.Cargos.AddAsync(fromdb);
             await _context.SaveChangesAsync();
+          
 
 
             return RedirectToAction("Index");
@@ -76,8 +87,84 @@ namespace MinuteByMinute.Controllers
         
         public async  Task<IActionResult> Orders()
         {
-           var Myorders =await _context.Cargos.ToListAsync();
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var Myorders =await _context.Cargos.Where(x=>x.AppUserId==user.Id).ToListAsync();
             return View(Myorders);
+        }
+        public async Task<IActionResult> DecleredCargos()
+        {
+            return View();
+        }
+        [AutoValidateAntiforgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> DecleredCargos(DecleredCargosVM decleredCargos,int id)
+        {
+           
+            var fromdb = await _context.DeclaredCargos.Where(x => x.CargosId == id).FirstOrDefaultAsync();
+          
+            if (!ModelState.IsValid) return View();
+
+            if (fromdb.CargosId == null)
+            {
+                string uniqueFileName = UploadFile(decleredCargos);
+                DeclaredCargos declered = new DeclaredCargos
+                {
+                    Count = decleredCargos.Count,
+                    Price = decleredCargos.Price,
+                    ImageURL = uniqueFileName,
+                    CargosId = id
+                };
+
+                await _context.AddAsync(declered);
+                var fromcargos = await _context.Cargos.Include(x => x.AppUser).ToListAsync();
+                foreach (var item in fromcargos)
+                {
+                    await _context.AddAsync(AddFlight(item));  
+
+                }
+                
+                
+                await _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                ModelState.AddModelError("message", "Siz Artiq Kargonuzu Beyan Etdiniz");
+                return View();
+            }
+            return View();
+        }
+
+
+        private async static Task<Flights> AddFlight(Cargos cargos)
+        {
+      
+            Flights flight = new Flights
+            {
+                 Count=cargos.Count,
+                  CargosID=cargos.Id,
+                  FullName=cargos.AppUser.Fullname,
+                  Price=cargos.Price
+            };
+            return flight;
+
+        }
+
+        private string UploadFile(DecleredCargosVM create)
+        {
+            string uniqueFileName = null;
+
+            if (create.Photo != null)
+            {
+                string uploadsFolder = Path.Combine(_env.WebRootPath, "assets", "img");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + create.Photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    create.Photo.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
     }
 }

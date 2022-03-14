@@ -1,0 +1,74 @@
+﻿@model List<Cargos>
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="text-center">All Cargos</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Sifarisci Adi
+                            </th>
+                            <th>
+                                Link
+                            </th>
+                            <th>
+                                Count
+                            </th>
+                            <th>
+                                Size
+                            </th>
+                            <th>
+                                About
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                OrderCode
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td class="py-1">
+                                @item.AppUser.UserName
+                            </td>
+                            <td class="py-1">
+                                <a href="@item.Link">Your Link</a>
+                            </td>
+                            <td>
+                                @item.Count
+
+                            </td>
+                            <td>
+                                @item.Size
+                            </td>
+                            <td>
+                                @item.Count
+                            </td>
+                            <td>
+                                @item.Price
+                            </td>
+                            <td>
+                               Run @item.Id
+                            </td>
+                        </tr>
+
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

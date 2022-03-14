@@ -1,4 +1,5 @@
-﻿using Core.Entity.Entities;
+﻿using Core.Entity.AdminPanelEntityes;
+using Core.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,10 @@ namespace Data.DAL
         }
 
         public DbSet<Cargos> Cargos { get; set; }
-      
+      public DbSet<TurkishStorage> TurkishStorages { get; set; }
+        public DbSet<DeclaredCargos> DeclaredCargos { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Shops> Shops{ get; set; }
+        public DbSet<Flights> Flights{ get; set; }
     }
 }
