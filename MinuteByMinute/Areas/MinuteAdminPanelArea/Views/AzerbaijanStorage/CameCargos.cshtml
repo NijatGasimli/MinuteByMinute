@@ -1,0 +1,28 @@
+﻿
+@model Cargos
+@{
+    ViewData["Title"] = "CameCargos";
+}
+
+<form method="post">
+    <div class="container">
+        <h1>Create Category</h1>
+
+
+
+
+        <span class="text-danger" asp-validation-for="Id"></span>
+
+        <input placeholder="Write Category Name" name="orderId" required>
+        <select name="office">
+            <option value="Ichariseher" >Icheriseher</option>
+            <option value="Hezi Aslanov" >Hezi Aslanov</option>
+        </select>
+
+
+        <button type="submit" class="registerbtn">Add Category</button>
+    </div>
+
+
+</form>
+

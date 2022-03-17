@@ -6,5 +6,7 @@ namespace Core.Entity.AdminPanelEntityes
 {
     class Courier
     {
+        public int Id { get; set; }
+        
     }
 }

@@ -104,7 +104,7 @@ namespace MinuteByMinute.Controllers
           
             if (!ModelState.IsValid) return View();
 
-            if (fromdb.CargosId == null)
+            if (fromdb is null)
             {
                 string uniqueFileName = UploadFile(decleredCargos);
                 DeclaredCargos declered = new DeclaredCargos
@@ -116,13 +116,15 @@ namespace MinuteByMinute.Controllers
                 };
 
                 await _context.AddAsync(declered);
-                var fromcargos = await _context.Cargos.Include(x => x.AppUser).ToListAsync();
+                var fromcargos = await _context.Cargos.Include(x => x.AppUser).Where(x=>x.Id==id).ToListAsync();
                 foreach (var item in fromcargos)
                 {
-                    await _context.AddAsync(AddFlight(item));  
+                    await _context.AddAsync(AddFlight(item));
+                    item.Status = "Flight";
 
                 }
-                
+               
+
                 
                 await _context.SaveChangesAsync();
 
@@ -136,7 +138,7 @@ namespace MinuteByMinute.Controllers
         }
 
 
-        private async static Task<Flights> AddFlight(Cargos cargos)
+        private  static Flights AddFlight(Cargos cargos)
         {
       
             Flights flight = new Flights

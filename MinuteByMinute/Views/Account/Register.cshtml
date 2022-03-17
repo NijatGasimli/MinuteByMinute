@@ -2,66 +2,163 @@
 @{
     ViewData["Title"] = "Register";
 }
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="Register">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FIN"></label>
-                <input asp-for="FIN" class="form-control" />
-                <span asp-validation-for="FIN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdentityType"></label>
-                <input asp-for="IdentityType" class="form-control" />
-                <span asp-validation-for="IdentityType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FullName"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdentityNumber"></label>
-                <input asp-for="IdentityNumber" class="form-control" />
-                <span asp-validation-for="IdentityNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BirthdayTime"></label>
-                <input asp-for="BirthdayTime" class="form-control" />
-                <span asp-validation-for="BirthdayTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V19</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/AccountAssets/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/AccountAssets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <!--===============================================================================================-->
+</head>
+<body>
+    <section id="User">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex about justify-content-between align-item-center ">
+                        <h1 class="">Giriş</h1>
+                        <p class="mt-5 mr-5"><a href="#">Ana Səhifə</a>/Giriş</p>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn-primary" >Register</button>
-        </form>
+        </div>
 
+
+    </section>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+                <form class="login100-form validate-form" asp-action="Login">
+                    <span class="login100-form-title p-b-33">
+                        Hesabınıza daxil olun
+                    </span>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" asp-for="Email" placeholder="E-mail">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="FullName" placeholder="Tam Ad">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="IdentityType" placeholder="Şəxsiyyət Vəsiqəsinin Tipi">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="IdentityNumber" placeholder="Şəxsiyyət Vəsiqəsinin Nömrəsi">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="FIN" placeholder="Şəxsiyyət Vəsiqəsinin FİN Kodu">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="Username" placeholder="İstifadəçi Adı">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="BirthdayTime" placeholder="Doğum Tarixi">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="PhoneNumber" placeholder="Telefon Nömrəsi">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="Password" placeholder="Şifrə">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+                    <div class="wrap-input100 rs1 validate-input">
+                        <input class="input100" asp-for="ConfirmPassword" placeholder="Təkrar Şifrə">
+                        <span class="focus-input100-1"></span>
+                        <span class="focus-input100-2"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-20">
+                        <button class="login100-form-btn">
+                           Qeydiyyatdan Kec
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-45 p-b-4">
+
+
+                        <a href="#" class="txt2 hov1">
+                            Şifrəmi  Unutdum
+                        </a>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="txt1">
+                            Və ya
+                        </span>
+
+                        <a asp-action="Login" class="txt2 hov1">
+                           Daxil ol
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/AccountAssets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/AccountAssets/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/AccountAssets/js/main.js"></script>
+
+</body>
+</html>
+
 
 

@@ -1,4 +1,8 @@
-﻿using Data.DAL;
+﻿using Core.Entity.AdminPanelEntityes;
+using Core.Entity.Entities;
+using Data.DAL;
+using Data.Utilities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,15 +16,123 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
     public class AzerbaijanStorageController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AzerbaijanStorageController(AppDbContext Context)
+        public AzerbaijanStorageController(AppDbContext Context,UserManager<AppUser> userManager)
         {
             _context = Context;
+            _userManager = userManager; 
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-          
+            var fromdb = await _context.AzerbaijanStorages.ToListAsync();
+            return View(fromdb);
+        }
+
+        public IActionResult CameCargos()
+        {
             return View();
         }
+
+        [AutoValidateAntiforgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> CameCargos(int OrderId,string office)
+        {
+            if (!ModelState.IsValid) return View();
+            var cargos = await _context.Cargos.Where(x => x.Isdeleted == false)
+                .ToListAsync();
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            foreach (var item in cargos)
+            {
+                if (OrderId == item.Id)
+                {
+
+                    var fromdb = new AzerbaijanStorage
+                    {
+                        About = item.About,
+                        Count = item.Count,
+                        Link = item.Link,
+                        Price = item.Price,
+                        Size = item.Size,
+                        ComingTime = DateTime.Today,
+                        OrderId = OrderId,
+                        AzerbaijanOffices=office
+                    };
+                    item.Status = "Azerbaijan Office";
+                    await _context.AzerbaijanStorages.AddAsync(fromdb);
+                    EmailHelper emailHelper = new EmailHelper();
+                    var message = "<html><body><h1>My title</h1><p>Mehsulunuz Turkiye Anbarindadi Zehmet Olmasa Sifarisinizi Smart Customda Beyan Edin</p></body></html>";
+                    bool emailResponse = emailHelper.SendEmail(user.Email, message);
+
+                    if(office == "Ichariseher")
+                    {
+                        foreach (var items in cargos)
+                        {
+                            if (items.Id == OrderId)
+                            {
+                                await _context.AddAsync(AddIchariseher(items));
+                            }
+                          
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var items in cargos)
+                        {
+                            if (items.Id == OrderId)
+                            {
+                                await _context.AddAsync(AddHeziAslanov(items));
+                            }
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    ModelState.AddModelError("Message", "Yazdiginiz cargo bazasinda movcud deyil");
+                }
+            }
+
+
+
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        private static IcharisaharOffice AddIchariseher(Cargos cargos)
+        {
+            IcharisaharOffice ichericargos = new IcharisaharOffice
+            {
+                About = cargos.About,
+                ComingTime = DateTime.Today,
+                Count = cargos.Count,
+                Link = cargos.Link,
+                Price = cargos.Price,
+                Size = cargos.Size
+            };
+
+            return ichericargos;
+
+        }
+        private static HaziAslanovOffice AddHeziAslanov(Cargos cargos)
+        {
+            HaziAslanovOffice ichericargos = new HaziAslanovOffice
+            {
+                About = cargos.About,
+                ComingTime = DateTime.Today,
+                Count = cargos.Count,
+                Link = cargos.Link,
+                Price = cargos.Price,
+                Size = cargos.Size
+            };
+
+            return ichericargos;
+
+        }
+
     }
 }

@@ -11,5 +11,6 @@ namespace Core.Entity.AdminPanelEntityes
         public string FullName { get; set; }
         public double Price { get; set; }
         public int CargosID { get; set; }
+
     }
 }

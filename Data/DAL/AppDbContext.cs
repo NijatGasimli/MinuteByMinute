@@ -22,5 +22,8 @@ namespace Data.DAL
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Shops> Shops{ get; set; }
         public DbSet<Flights> Flights{ get; set; }
+        public DbSet<AzerbaijanStorage> AzerbaijanStorages { get; set; }
+        public DbSet<IcharisaharOffice> IcharisaharOffices { get; set; }
+        public DbSet<HaziAslanovOffice> HaziAslanovOffices { get; set; }
     }
 }

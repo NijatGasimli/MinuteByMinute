@@ -17,6 +17,7 @@ namespace Core.Entity.AdminPanelEntityes
         public string Count { get; set; }
         public Cargos Cargos{ get; set; }
         public int? CargosId { get; set; }
+        public int OrderId { get; set; }
 
     }
 }

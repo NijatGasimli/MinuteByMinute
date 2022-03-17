@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Core.Entity.AdminPanelEntityes
 {
-   public class AzerbaijanStorage
+    public class AzerbaijanStorage
     {
         public int Id { get; set; }
         public string Link { get; set; }
@@ -13,8 +13,10 @@ namespace Core.Entity.AdminPanelEntityes
         public string About { get; set; }
         public double Price { get; set; }
         public DateTime ComingTime { get; set; }
-        public bool IsInvoice { get; set; }
-        public int DeclaredCargosId { get; set; }
-        public DeclaredCargos Declared { get; set; }
+        public int OrderId { get; set; }
+        public string AzerbaijanOffices{ get; set; }
+
+
+
     }
-}
+    }
