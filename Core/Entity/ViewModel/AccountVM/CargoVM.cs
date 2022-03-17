@@ -24,7 +24,7 @@ namespace Core.Entity.ViewModel.AccountVM
         public string About { get; set; }
         [Required]
         [MaxLength(50)]
-        [DataType(DataType.Url)]
+      
         public double Price { get; set; }
     }
 }
