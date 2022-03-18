@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.DAL;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,16 @@ namespace MinuteByMinute.Controllers
 {
     public class ShopsController : Controller
     {
-        public IActionResult Index()
+        private readonly AppDbContext _context;
+
+        public ShopsController(AppDbContext Context)
         {
-            return View();
+            _context = Context;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var fromdb = await _context.Categories.Include(p=>p.Shops).ToListAsync();
+            return View(fromdb);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Core.Entity.AdminPanelEntityes
         public string CustomerName { get; set; }
         public int OrderId { get; set; }
         public string AzerbaijanOffices{ get; set; }
+        public bool Isdeleted { get; set; }
+        public string Achieve { get; set; }
 
 
 

@@ -25,5 +25,8 @@ namespace Data.DAL
         public DbSet<AzerbaijanStorage> AzerbaijanStorages { get; set; }
         public DbSet<IcharisaharOffice> IcharisaharOffices { get; set; }
         public DbSet<HaziAslanovOffice> HaziAslanovOffices { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+        public DbSet<OwlCaruosel> OwlCaruosels { get; set; }
+        
     }
 }

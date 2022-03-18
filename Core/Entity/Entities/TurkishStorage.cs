@@ -14,6 +14,7 @@ namespace Core.Entity.AdminPanelEntityes
         public double Price { get; set; }
         public DateTime ComingTime { get; set; }
         public string CustomerName { get; set; }
+        public int OrderId { get; set; }
 
 
     }

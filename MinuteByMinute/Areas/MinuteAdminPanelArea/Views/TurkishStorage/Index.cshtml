@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
 
-
+                        <button class="btn-icon-append btn-primary">Məhsul Əlavə Et</button>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -54,6 +54,7 @@
                                         <th>
                                             Məhsulun Qiyməti
                                         </th>
+                                        <th>Məhsulun Gəlmə Tarixi</th>
 
                                     </tr>
                                 </thead>
@@ -62,7 +63,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                @*RUN @item.OrderId*@
+                                                RUN @item.OrderId
                                             </td>
                                             <td>
                                                 @item.CustomerName
@@ -83,6 +84,9 @@
                                             <td>
                                                 @item.Price TL
 
+                                            </td>
+                                            <td>
+                                                @item.ComingTime
                                             </td>
 
 

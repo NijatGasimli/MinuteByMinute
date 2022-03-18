@@ -24,6 +24,7 @@ namespace Core.Entity.Entities
         public string? AppUserId { get; set; }
         public DeclaredCargos? Declared { get; set; }
         public bool IsInvoice { get; set; }
+        public  string Achieve { get; set; }
 
     }
 }

@@ -4,14 +4,16 @@ using Data.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318121151_againupdate")]
+    partial class againupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +31,6 @@ namespace Data.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Achieve")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AzerbaijanOffices")
                         .HasColumnType("nvarchar(max)");
 
@@ -43,9 +42,6 @@ namespace Data.Migrations
 
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Isdeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
@@ -309,9 +305,6 @@ namespace Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Achieve")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AppUserId")

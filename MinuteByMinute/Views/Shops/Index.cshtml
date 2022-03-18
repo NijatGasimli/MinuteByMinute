@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Categories>
 @{
     ViewData["Title"] = "Index";
 }
@@ -36,18 +36,12 @@
                         <div class="">
                             <h4 class="d-flex justify-content-center text-bold mt-3">Kategoriyalar</h4>
                             <ul class="Category mt-4 justify-content-md-end">
-                                <li><a href="">Avtomobil məhsulları</a></li>
-                                <li><a href="">Uşaq məhsulları</a></li>
-                                <li><a href="">Kosmetika</a></li>
-                                <li><a href="">Musiqi aksesuarları </a></li>
-                                <li><a href="">Multibrend mağazalar</a></li>
-                                <li><a href="">Geyim, ayaqqabı, aksesuarlar</a></li>
-                                <li><a href=""> İdman məhsulları</a></li>
-                                <li><a href="">Məişət texnikası və elektronika</a></li>
-                                <li><a href=""> Ev və təmir üçün məhsullar</a></li>
-                                <li><a href=""> Maraq və hobbi</a></li>
-                                <li><a href=""> Kitab</a></li>
-                                <li><a href="">Ev əşyaları</a></li>
+                                @foreach (var item in Model)
+                                {
+                                    <li><a href="">@item.Name</a></li>
+                                }
+
+
                             </ul>
                         </div>
                     </div>

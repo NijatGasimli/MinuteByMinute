@@ -11,34 +11,41 @@
                     <thead>
                         <tr>
                             <th>
-                                Sifarisci Adi
+                                Müştəri Kodu
                             </th>
                             <th>
-                                Link
+                                Sifarişci Adı
                             </th>
                             <th>
-                                Count
+                                Məhsulun Linki
                             </th>
                             <th>
-                                Size
+                                Məhsulun Sayı
                             </th>
                             <th>
-                                About
+                                Məhsulun Ölçüsü
                             </th>
                             <th>
-                                Price
+                                Haqqında Sayı
                             </th>
                             <th>
-                                OrderCode
+                                Məhsulun Qiyməti
                             </th>
+                            <th>
+                                Məhsul Haqqında
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                         <tr>
+                            <td>
+                                Run @item.Id
+                            </td>
                             <td class="py-1">
-                                @item.AppUser.UserName
+                                @item.AppUser.Fullname
                             </td>
                             <td class="py-1">
                                 <a href="@item.Link">Your Link</a>
@@ -57,8 +64,12 @@
                                 @item.Price
                             </td>
                             <td>
-                               Run @item.Id
+                                @item.About
                             </td>
+                            <td>
+                                @item.Achieve
+                            </td>
+
                         </tr>
 
                         }

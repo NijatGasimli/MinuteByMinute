@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
-    [Area("MinuteAdminPanelArea")]
+
     public class TurkishStorageController : Controller
     {
         private readonly AppDbContext _context;
@@ -40,9 +40,18 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
         public async Task<IActionResult> CameCargos(int OrderId)
         {
             if (!ModelState.IsValid) return View();
+            if(OrderId== null)
+            {
+                return View();
+            }
             var cargos = await _context.Cargos.Where(x => x.Isdeleted == false)
                 .ToListAsync();
-          
+              var Azerbaijan = await _context.TurkishStorages.FindAsync(OrderId);
+            if(Azerbaijan != null)
+            {
+                ModelState.AddModelError("Message","Siz Artıq Bu Məhsulu Əlavə Etdiniz");
+                return View();
+            }
             var user = await _userManager.GetUserAsync(HttpContext.User);
             foreach (var item in cargos)
             {
@@ -57,7 +66,8 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
                         Price = item.Price,
                         Size = item.Size,
                         ComingTime = DateTime.Today,
-                        CustomerName=user.Fullname
+                        CustomerName=user.Fullname,
+                        OrderId=item.Id
                         
                     };
                     item.Status = "Turkey Office";

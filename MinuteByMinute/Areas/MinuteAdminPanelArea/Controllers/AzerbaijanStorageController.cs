@@ -25,7 +25,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var fromdb = await _context.AzerbaijanStorages.ToListAsync();
+            var fromdb = await _context.AzerbaijanStorages.Where(p=>p.Isdeleted==false).ToListAsync();
             return View(fromdb);
         }
 
@@ -39,12 +39,27 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
         public async Task<IActionResult> CameCargos(int OrderId,string office)
         {
             if (!ModelState.IsValid) return View();
+            if (OrderId == null)
+            {
+                return View();
+            }
+            if (office == null)
+            {
+                return View();
+            }
             var cargos = await _context.Cargos.Where(x => x.Isdeleted == false)
                 .ToListAsync();
+            var Azerbaijan = await _context.AzerbaijanStorages.FindAsync(OrderId);
+            if(Azerbaijan != null)
+            {
+                ModelState.AddModelError("Message","Siz Artıq Bu Məhsulu Əlavə Etdiniz");
+                return View();
+            }
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
             foreach (var item in cargos)
             {
+
                 if (OrderId == item.Id)
                 {
 
@@ -133,6 +148,24 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 
             return ichericargos;
 
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var fromdb = await _context.AzerbaijanStorages.FindAsync(id);
+            var fromall= await _context.Cargos.FindAsync(id);
+            fromdb.Isdeleted = true;
+            fromdb.Achieve = "Təhvil Verildi";
+            fromall.Achieve= "Təhvil Verildi"; 
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
     }

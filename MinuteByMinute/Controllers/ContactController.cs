@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
+namespace MinuteByMinute.Controllers
 {
-    public class IchariseherController : Controller
+    public class ContactController : Controller
     {
         public IActionResult Index()
         {

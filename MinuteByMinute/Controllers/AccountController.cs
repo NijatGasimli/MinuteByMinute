@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MinuteByMinute.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class AccountController : Controller
     {
 
@@ -106,6 +107,10 @@ namespace MinuteByMinute.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Login(LoginVM model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index","Home");
+            }
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
