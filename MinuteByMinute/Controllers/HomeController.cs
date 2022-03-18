@@ -19,12 +19,18 @@ namespace MinuteByMinute.Controllers
 
         public HomeController(AppDbContext Context,UserManager<AppUser> userManager)
         {
-            Context = _context;
+            _context = Context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            HomeVM home = new HomeVM
+            {
+                OwlCaruosels = await _context.OwlCaruosels.ToListAsync(),
+                Slider = await _context.Sliders.Where(p=>p.IsDeleted==false).ToListAsync()
+            };
+            return View(home);
         }
      
       

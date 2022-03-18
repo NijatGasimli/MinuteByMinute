@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,12 +15,13 @@
 
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="~/assets/img/anbar.jpeg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="~/assets/img/3.png" alt="Second slide">
-                                </div>
+                                @foreach (var item in Model.Slider)
+                                {
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="~/assets/img/@item.ImageLink" alt="Second slide">
+                                    </div>
+                                }
+
 
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -119,46 +120,20 @@
             <div class="row mt-5">
                 <div class="col-md-12">
                     <div class="slider mt-3">
-                        <div class="card mt-3" style="width: 14rem;">
-                            <img class="card-img-top" src="~/assets/img/trendyolda-endirimler-davam-edir.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">Runex-də “Hədiyyə yağışı” müsabiqəsi başladı</h3>
 
-                                <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
-                            </div>
-                        </div>
-                        <div class="card mt-3" style="width: 14rem;">
-                            <img class="card-img-top" src="~/assets/img/trendyolda-endirimler-davam-edir.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">Runex-də “Hədiyyə yağışı” müsabiqəsi başladı</h3>
+                        @foreach (var item in Model.OwlCaruosels)
+                        {
+                            <div class="card mt-3" style="width: 14rem;">
+                                <img class="card-img-top" src="~/assets/img/@item.ImageLink" alt="Card image cap">
+                                <div class="card-body">
+                                    <h3 class="card-title text-center">@item.Head</h3>
 
-                                <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
+                                    <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card mt-3" style="width: 14rem;">
-                            <img class="card-img-top" src="~/assets/img/qis-ucun-ayyaqabi-sifaris-et.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">Runex-də “Hədiyyə yağışı” müsabiqəsi başladı</h3>
+                        }
 
-                                <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
-                            </div>
-                        </div>
-                        <div class="card mt-3" style="width: 14rem;">
-                            <img class="card-img-top" src="~/assets/img/vaxt-geldi-yeni-il-alis-verisini-turkiyeden-et.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">Runex-də “Hədiyyə yağışı” müsabiqəsi başladı</h3>
 
-                                <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
-                            </div>
-                        </div>
-                        <div class="card mt-3" style="width: 14rem;">
-                            <img class="card-img-top" src="~/assets/img/zarada-yeni-il-endirimleri-basladi.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title text-center">Runex-də “Hədiyyə yağışı” müsabiqəsi başladı</h3>
-
-                                <a href="#" class="btn btn-success d-flex justify-content-center mt-3">Daha Etrafli</a>
-                            </div>
-                        </div>
 
 
                     </div>

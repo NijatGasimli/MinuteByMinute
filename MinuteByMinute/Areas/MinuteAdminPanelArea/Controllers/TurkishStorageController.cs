@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
-
+[Area("MinuteAdminPanelArea")]
     public class TurkishStorageController : Controller
     {
         private readonly AppDbContext _context;
