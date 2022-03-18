@@ -103,7 +103,7 @@ namespace MinuteByMinute.Controllers
             var fromdb = await _context.DeclaredCargos.Where(x => x.CargosId == id).FirstOrDefaultAsync();
           
             if (!ModelState.IsValid) return View();
-
+          
             if (fromdb is null)
             {
                 string uniqueFileName = UploadFile(decleredCargos);
@@ -167,6 +167,11 @@ namespace MinuteByMinute.Controllers
                 }
             }
             return uniqueFileName;
+        }
+        public async Task<IActionResult> Package()
+        {
+            var fromdb = await _context.Cargos.Where(x => x.Status == "Azerbaijan Office").ToListAsync();
+            return View(fromdb);
         }
     }
 }

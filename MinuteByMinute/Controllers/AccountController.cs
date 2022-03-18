@@ -56,6 +56,19 @@ namespace MinuteByMinute.Controllers
                         PhoneNumber = registerVM.PhoneNumber,
                         BirthdayTime = registerVM.BirthdayTime
                     };
+
+                    if (registerVM.Username == userCheck.UserName)
+                    {
+                        ModelState.AddModelError("message", "Bu Istifadeci Adi Artiq Istifade Olunur");
+                        return View();
+                    }
+
+                    if (registerVM.FIN == userCheck.FIN)
+                    {
+                        ModelState.AddModelError("message", "Bu Şəxsiyyət Vəsiqəsi İlə Artıq Qeydiyyat Olunub");
+                        return View();
+                    }
+
                     var result = await _userManager.CreateAsync(user, registerVM.Password);
                     if (result.Succeeded)
                     {

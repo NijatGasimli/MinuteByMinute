@@ -13,6 +13,7 @@ namespace Core.Entity.AdminPanelEntityes
         public string About { get; set; }
         public double Price { get; set; }
         public DateTime ComingTime { get; set; }
+        public string CustomerName { get; set; }
         public int OrderId { get; set; }
         public string AzerbaijanOffices{ get; set; }
 

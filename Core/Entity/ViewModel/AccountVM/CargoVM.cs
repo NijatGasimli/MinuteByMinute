@@ -9,21 +9,16 @@ namespace Core.Entity.ViewModel.AccountVM
     {
         public string UserId { get; set; }
         [Required]
-        [MaxLength(255)]
-        [DataType(DataType.Url)]
         public string Link { get; set; }
-        [Required]
-        [MaxLength(20)]
+  
         public int Count { get; set; }
-        [Required]
-        [MaxLength(20)]
+       
+     [Required]
         public int Size { get; set; }
-        [Required]
-        [MaxLength(255)]
-        [DataType(DataType.Text)]
+       
+       [Required]
         public string About { get; set; }
-        [Required]
-        [MaxLength(50)]
+    
       
         public double Price { get; set; }
     }

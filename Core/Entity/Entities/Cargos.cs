@@ -20,9 +20,9 @@ namespace Core.Entity.Entities
         public bool Isdeleted { get; set; }
         public string Status { get; set; }
         public DateTime Time { get; set; }
-        public AppUser AppUser { get; set; }
-        public string AppUserId { get; set; }
-        public DeclaredCargos Declared { get; set; }
+        public AppUser? AppUser { get; set; }
+        public string? AppUserId { get; set; }
+        public DeclaredCargos? Declared { get; set; }
         public bool IsInvoice { get; set; }
 
     }

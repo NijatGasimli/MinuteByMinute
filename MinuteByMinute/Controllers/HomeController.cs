@@ -1,6 +1,8 @@
-﻿using Core.Entity.ViewModel;
+﻿using Core.Entity.Entities;
+using Core.Entity.ViewModel;
 using Data.DAL;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,53 +15,19 @@ namespace MinuteByMinute.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(AppDbContext Context)
+        public HomeController(AppDbContext Context,UserManager<AppUser> userManager)
         {
             Context = _context;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
             return View();
         }
      
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [AutoValidateAntiforgeryToken]
-        [HttpPost]
-       
-        public async Task<IActionResult> Create(CargoCreateVM model)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync();
-            var FromDB = await _context.Cargos.FirstOrDefaultAsync();
-           
-
-            if (!ModelState.IsValid) return View();
-
-           
-            if (User.Identity.IsAuthenticated)
-            {
-                CargoCreateVM cargos = new CargoCreateVM
-                {
-                    About = FromDB.About,
-                    Price = FromDB.Price,
-                    Count = FromDB.Count,
-                    Size = FromDB.Size,
-                    Link = FromDB.Link,
-                    IdentityUserId = user.Id
-
-                };
-                await _context.AddAsync(cargos);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
-           await _context.SaveChangesAsync();
-            return View();
-        }
+      
         
              
     }
