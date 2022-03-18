@@ -34,22 +34,25 @@
                                     <tr>
 
                                         <th>
-                                            OrderCode
+                                           Müştəri Kodu
                                         </th>
                                         <th>
-                                            Link
+                                           Sifarişci Adı
                                         </th>
                                         <th>
-                                            Count
+                                            Məhsulun Linki
                                         </th>
                                         <th>
-                                            Size
+                                            Məhsulun Sayı
                                         </th>
                                         <th>
-                                            About
+                                           Məhsulun Ölçüsü
                                         </th>
                                         <th>
-                                            Price
+                                           Haqqında Məlumat
+                                        </th>
+                                        <th>
+                                           Məhsulun Qiyməti
                                         </th>
                                        
                                     </tr>
@@ -61,8 +64,11 @@
                                             <td>
                                                 RUN @item.OrderId
                                             </td>
+                                            <td>
+                                                @item.CustomerName
+                                            </td>
                                             <td class="py-1">
-                                                <a href="@item.Link">Your Link</a>
+                                                <a href="@item.Link">Məhsulun Linki</a>
                                             </td>
                                             <td>
                                                 @item.Count
@@ -75,7 +81,7 @@
                                                 @item.Count
                                             </td>
                                             <td>
-                                                @item.Price
+                                                @item.Price TL
 
                                             </td>
                                           

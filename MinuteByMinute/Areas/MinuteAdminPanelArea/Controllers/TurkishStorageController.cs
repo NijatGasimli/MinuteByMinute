@@ -57,6 +57,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
                         Price = item.Price,
                         Size = item.Size,
                         ComingTime = DateTime.Today,
+                        CustomerName=user.Fullname
                         
                     };
                     item.Status = "Turkey Office";

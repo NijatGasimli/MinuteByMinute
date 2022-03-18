@@ -57,7 +57,8 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
                         Size = item.Size,
                         ComingTime = DateTime.Today,
                         OrderId = OrderId,
-                        AzerbaijanOffices=office
+                        AzerbaijanOffices=office,
+                        CustomerName=user.Fullname
                     };
                     item.Status = "Azerbaijan Office";
                     await _context.AzerbaijanStorages.AddAsync(fromdb);
