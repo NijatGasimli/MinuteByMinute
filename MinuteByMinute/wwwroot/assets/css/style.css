@@ -48,7 +48,7 @@
   font-weight: 700;
   color: rgb(60, 18, 77);
   font-family: Akaya Telivigala, display;
-
+  margin-left:20px;
   text-transform: none;
 }
 #Navbar .mybutton{
@@ -594,6 +594,7 @@ font-weight: bold;
 }
 #Footer .Contact p {
     color: white;
+    margin-top:10%;!important;
 }
 #Footer .mail a{
 color: white;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
     [Area("MinuteAdminPanelArea")]
-    [Authorize("Admin")]
+   
     public class DashBoardController : Controller
     {
         public IActionResult Index()

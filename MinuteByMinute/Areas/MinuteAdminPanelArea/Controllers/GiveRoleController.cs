@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
     [Area("MinuteAdminPanelArea")]
-    [Authorize("SuperAdmin")]
+    
     public class GiveRoleController : Controller
     {
 
