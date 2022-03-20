@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
     [Area("MinuteAdminPanelArea")]
-    [Authorize("SuperAdmin")]
+    //[Authorize("SuperAdmin")]
     public class CargosController : Controller
     {
         private readonly AppDbContext _context;

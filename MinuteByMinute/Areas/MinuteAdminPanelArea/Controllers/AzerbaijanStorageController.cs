@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
     [Area("MinuteAdminPanelArea")]
-    [Authorize("AzerbaycanAdmin")]
+    //[Authorize("AzerbaycanAdmin")]
     public class AzerbaijanStorageController : Controller
     {
         private readonly AppDbContext _context;
@@ -52,7 +52,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
             var cargos = await _context.Cargos.Where(x => x.Isdeleted == false)
                 .ToListAsync();
             var Azerbaijan = await _context.AzerbaijanStorages.FindAsync(OrderId);
-            if(Azerbaijan != null)
+            if(Azerbaijan is null)
             {
                 ModelState.AddModelError("Message","Siz Artıq Bu Məhsulu Əlavə Etdiniz");
                 return View();
@@ -80,7 +80,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
                     item.Status = "Azerbaijan Office";
                     await _context.AzerbaijanStorages.AddAsync(fromdb);
                     EmailHelper emailHelper = new EmailHelper();
-                    var message = "<html><body><h1>My title</h1><p>Mehsulunuz Turkiye Anbarindadi Zehmet Olmasa Sifarisinizi Smart Customda Beyan Edin</p></body></html>";
+                    var message = "<html><body><h1>My title</h1><p>Mehsulunuz Azerbaycan Anbarindadir Zehmet OLmasa Qeyd Olunan Ofise Yaxinlasin/p></body></html>";
                     bool emailResponse = emailHelper.SendEmail(user.Email, message);
 
                     if(office == "Ichariseher")
@@ -160,10 +160,11 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
             }
 
             var fromdb = await _context.AzerbaijanStorages.FindAsync(id);
-            var fromall= await _context.Cargos.FindAsync(id);
+            var fromall= await _context.Cargos.FindAsync(fromdb.OrderId);
             fromdb.Isdeleted = true;
             fromdb.Achieve = "Təhvil Verildi";
-            fromall.Achieve= "Təhvil Verildi"; 
+            fromall.Achieve= "Təhvil Verildi";
+            fromall.Status = "Tehvil Verildi";
 
             await _context.SaveChangesAsync();
 

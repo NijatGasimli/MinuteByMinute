@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
 [Area("MinuteAdminPanelArea")]
-    [Authorize("TurkiyeAdmin")]
+    //[Authorize("TurkiyeAdmin")]
     public class TurkishStorageController : Controller
     {
         private readonly AppDbContext _context;
@@ -49,7 +49,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
             var cargos = await _context.Cargos.Where(x => x.Isdeleted == false)
                 .ToListAsync();
               var Azerbaijan = await _context.TurkishStorages.FindAsync(OrderId);
-            if(Azerbaijan != null)
+            if(Azerbaijan is null)
             {
                 ModelState.AddModelError("Message","Siz Artıq Bu Məhsulu Əlavə Etdiniz");
                 return View();
@@ -91,7 +91,7 @@ namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 
          
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

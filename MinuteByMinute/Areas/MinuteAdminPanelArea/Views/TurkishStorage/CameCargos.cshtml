@@ -3,20 +3,20 @@
     ViewData["Title"] = "CameCargos";
 }
 
-<form method="post">
+<form method="post" asp-action="CameCargos">
     <div class="container">
-        <h1>Create Category</h1>
+        <h1>Məhsul Əlavə Et</h1>
 
 
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <span class="text-danger" asp-validation-for="Id"></span>
 
-        <input placeholder="Write Category Name" name="orderId" required>
+        <input placeholder="Məhsulun Nömrəsini Əlavə Edin" name="orderId" required>
 
 
 
-        <button type="submit" class="registerbtn">Add Category</button>
+        <button type="submit" class="registerbtn">Məhsul Əlavə Edin</button>
     </div>
 
 
