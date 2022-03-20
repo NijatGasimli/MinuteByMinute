@@ -35,22 +35,17 @@
                             @if (User.Identity.IsAuthenticated)
                             {
 
-                                <div class="dropdown show">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-user-alt mt-1" style="color:yellow"></i>
-                                    </a>
+                            <div class="dropdown">
+                                <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  @User.Identity.Name
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:#4E4C76 ">
 
-                                    <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
-
-                                        @User.Identity.Name
-                                        <ul class=" Userbar justify-content-evenly mt-2">
-                                            <li><a asp-controller="User" asp-action="Index">Şəxsi məlumatlar</a></li>
-                                            
-                                        </ul>
-                                        <a asp-controller="Account" asp-action="Logout">Logout</a>
-                                    </div>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Index">Istifadeci Paneli</a>
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">Cixis</a>
+                                   
                                 </div>
-
+                            </div>
 
 
                             }

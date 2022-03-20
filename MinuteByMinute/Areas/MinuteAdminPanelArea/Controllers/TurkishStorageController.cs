@@ -2,6 +2,7 @@
 using Core.Entity.Entities;
 using Data.DAL;
 using Data.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
 [Area("MinuteAdminPanelArea")]
+    [Authorize("TurkiyeAdmin")]
     public class TurkishStorageController : Controller
     {
         private readonly AppDbContext _context;

@@ -1,6 +1,7 @@
 ﻿using Core.Entity.Entities;
 using Core.Entity.ViewModel.Crud;
 using Data.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace MinuteByMinute.Areas.MinuteAdminPanelArea.Controllers
 {
     [Area("MinuteAdminPanelArea")]
+    [Authorize("SuperAdmin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;

@@ -128,11 +128,14 @@
                                     </a>
                                     <a class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
-                                            <img src="~/Adminassets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                                          
                                         </div>
                                         <div class="preview-item-content flex-grow">
                                             <h6 class="preview-subject ellipsis font-weight-normal">
-                                                Johnson
+                                              @if (User.Identity.IsAuthenticated)
+                                              {
+                                                  @User.Identity.Name
+                                              }
                                             </h6>
                                             <p class="font-weight-light small-text text-muted mb-0">
                                                 Upcoming board meeting
@@ -163,21 +166,8 @@
                             <li class="nav-item dropdown  d-lg-flex d-none">
                                 <button type="button" class="btn btn-inverse-primary btn-sm">Product </button>
                             </li>
-                            <li class="nav-item dropdown d-lg-flex d-none">
-                                <a class="dropdown-toggle show-dropdown-arrow btn btn-inverse-primary btn-sm" id="nreportDropdown" href="#" data-bs-toggle="dropdown">
-                                    Reports
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="nreportDropdown">
-                                    <p class="mb-0 font-weight-medium float-left dropdown-header">Reports</p>
-                                    <a class="dropdown-item">
-                                        <i class="mdi mdi-file-pdf text-primary"></i>
-                                        Pdf
-                                    </a>
-                                    <a class="dropdown-item">
-                                        <i class="mdi mdi-file-excel text-primary"></i>
-                                        Exel
-                                    </a>
-                                </div>
+                          
+                              
                             </li>
                             <li class="nav-item dropdown d-lg-flex d-none">
                                 <button type="button" class="btn btn-inverse-primary btn-sm">Settings</button>
@@ -231,41 +221,28 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/basic-table.html" class="nav-link">
-                                <i class="mdi mdi-grid menu-icon"></i>
+                            <a asp-controller="Slider" asp-action="Index" class="nav-link">
+                              
                                 <span class="menu-title">Tables</span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/icons/mdi.html" class="nav-link">
-                                <i class="mdi mdi-emoticon menu-icon"></i>
-                                <span class="menu-title">Icons</span>
+                            <a asp-controller="GiveRole" asp-action="Index" class="nav-link">
+                               
+                                <span class="menu-title">Give Role</span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="mdi mdi-codepen menu-icon"></i>
-                                <span class="menu-title">Sample Pages</span>
+                            <a asp-controller="DecleredCargos" asp-action="Index" class="nav-link">
+                              
+                                <span class="menu-title">Declere Cargos</span>
                                 <i class="menu-arrow"></i>
                             </a>
-                            <div class="submenu">
-                                <ul class="submenu-item">
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/login.html">Login</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html">Login 2</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/register.html">Register</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/register-2.html">Register 2</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/samples/lock-screen.html">Lockscreen</a></li>
-                                </ul>
-                            </div>
+                            
                         </li>
-                        <li class="nav-item">
-                            <a href="docs/documentation.html" class="nav-link">
-                                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                                <span class="menu-title">Documentation</span>
-                            </a>
-                        </li>
+                       
                     </ul>
                 </div>
             </nav>
